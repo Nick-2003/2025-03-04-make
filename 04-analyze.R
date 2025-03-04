@@ -1,7 +1,15 @@
 library(readr)
 library(ggplot2)
+library(docopt)
+"
+This script loads, cleans, saves titanic data
 
-model <- read_rds("output/model.RDS")
+Usage: 04-analyze.R --model=<model> --output_path=<output_path> -- output_fig=<output_fig>
+" -> doc 
+opt <- docopt(doc)
+
+# model <- readr::read_rds("output/model.RDS")
+model <- readr::read_rds(opt$model)
 
 summary(model)
 
@@ -17,6 +25,8 @@ coef <- coef |>
 
 coef
 
+write_csv(coef, opt_output_coef)
+
 # plot results
 
 
@@ -24,3 +34,5 @@ ggplot(coef |> dplyr::filter(term != "(Intercept)"), aes(x = term, y = or)) +
   geom_point() +
   coord_flip() +
   geom_hline(yintercept = 1)
+
+ggsave(opt$output_fig)

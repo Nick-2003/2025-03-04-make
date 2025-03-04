@@ -4,7 +4,7 @@ library(ggplot2)
 # don't do this
 # source("01-load_clean.R")
 
-data <- readr::read_csv("data/titanic_clean.csv")
+data <- readr::read_csv("data/clean/titanic_clean.csv") # Change file location
 
 # eda
 

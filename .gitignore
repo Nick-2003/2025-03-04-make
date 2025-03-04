@@ -1,3 +1,21 @@
+data/clean
+output/
+
+# Ignore data/clean/ except .gitignore within
+!data/clean/ .gitignore 
+
+# Ignore data/clean/ except .gitignore within
+!output/ .gitignore 
+
+# All pdf
+*.pdf 
+
+# All html
+*.html
+
+# All directories ending with _files/
+*_files/
+
 # History files
 .Rhistory
 .Rapp.history
