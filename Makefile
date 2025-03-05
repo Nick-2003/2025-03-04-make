@@ -8,6 +8,9 @@ output/model.RDS: 03-model.R data/clean/titanic_clean.csv
 output/coef.csv output/fig.png: 04-analyze.R output/model.RDS
 	Rscript 04-analyze.R --model=output/model.RDS --output_path=output/coef.csv -- output_fig=output/fig.png
 
+index.html: report.qmd output/coef.csv output/fig.png
+	quarto render report.qmd --output index.html
+
 # analysis:
 # 	Rscript 01-load_clean.R
 # 	Rscript 02-eda.R
@@ -16,10 +19,8 @@ output/coef.csv output/fig.png: 04-analyze.R output/model.RDS
 analysis: 
 	data/clean/titanic_clean.csv \ 
 	output/model.RDS \ 
-	output/coef.csv output/fig.png
-	
-index.html: report.qmd output/coef.csv output/fig.png
-	quarto render report.qmd --output index.html
+	output/coef.csv output/fig.png \
+	index.html
 
 # download:
 # 	Rscript 01-load_clean.R

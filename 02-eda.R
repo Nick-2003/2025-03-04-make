@@ -1,5 +1,12 @@
 library(readr)
 library(ggplot2)
+library(docopt)
+"
+This script loads, cleans, saves titanic data
+
+Usage: 02-eda.R -- file_path=<file_path> --output_path=<output_path>
+" -> doc 
+opt <- docopt(doc)
 
 # don't do this
 # source("01-load_clean.R")
