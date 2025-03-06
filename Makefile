@@ -2,6 +2,9 @@
 data/clean/titanic_clean.csv: 01-load_clean.R data/original/titanic.csv
 	Rscript 01-load_clean.R -- file_path=data/original/titanic.csv --output_path=data/clean/titanic_clean.csv
 
+output/titanic1.png: 02-eda.R data/clean/titanic_clean.csv
+	Rscript 02-eda.R -- file_path=data/clean/titanic_clean.csv --output_path=output/titanic1.png
+
 output/model.RDS: 03-model.R data/clean/titanic_clean.csv
 	Rscript 03-model.R -- file_path=data/clean/titanic_clean.csv --output_path=output/model.RDS
 
@@ -18,6 +21,7 @@ index.html: report.qmd output/coef.csv output/fig.png
 # 	Rscript 04-analyze.R
 analysis: 
 	data/clean/titanic_clean.csv \ 
+	output/titanic1.png \
 	output/model.RDS \ 
 	output/coef.csv output/fig.png \
 	index.html
